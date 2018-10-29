@@ -3,8 +3,8 @@ const options = require('./lib/options');
 const centerhost = options.center_host;
 const centerport = options.center_port;
 const myhostname = options.myhostname;
-const beginport = options.range[ 0 ];
-const endport = options.range[ 1 ];
+const beginport = options.range[0];
+const endport = options.range[1];
 const manager_port = options.manager_port;
 const controller_port = options.controller_port;
 const State = options.state;
@@ -20,7 +20,7 @@ const config = {
 };
 const Comm = require('./lib/Comm');
 const Command = require('./lib/SSManager');
-const comm = new Comm({ host: centerhost, port: centerport, router: '/' });
+const comm = new Comm({host: centerhost, port: centerport, router: '/'});
 const controller = new Command(config);
 /**
  * ss管理器初始化
@@ -78,7 +78,7 @@ comm.OnOpen(async (config, ack) => {
  */
 comm.OnClose((config, ack) => {
   console.error(config);
-  controller.ClosePort(config.server_port, config)
+  controller.ClosePort(config.server_port)
     .then((ret) => {
       console.error(`OnClose ack center server`, ret);
       ack(ret);
@@ -99,16 +99,18 @@ controller.OnRemove(port => {
 /**
  * 定时向服务中心发送端口消耗状况
  */
-const NotifyHandler = () =>{
+const NotifyHandler = () => {
   const traffic_msg = controller.sessionCache.alltraffic;
   if (!!!traffic_msg) return;
   comm.Notify('transfer', traffic_msg);
   controller.sessionCache.cleartraffic();
 };
-let NotifyHandlerTimer ;
-comm.OnConnect(()=>{
-  NotifyHandlerTimer = setInterval(NotifyHandler,60*1000);
+let NotifyHandlerTimer;
+comm.OnConnect(() => {
+  NotifyHandlerTimer = setInterval(NotifyHandler, 60 * 1000);
 });
-comm.OnDisconnect(()=>{
+comm.OnDisconnect(() => {
   clearInterval(NotifyHandlerTimer);
 });
+// ['-H 10.0.2.70', '-P 7001', '-h 10.0.2.69' ,'-R 10000:20000' ,'-M 8001' ,'-C 8002' ,'-S CN' ,'-A 1' ]
+//   ['-H 10.0.2.70', '-P 7001', '-h 10.0.2.72' ,'-R 10000:20000' ,'-M 8001' ,'-C 8002' ,'-S CN' ,'-A 1' ]
