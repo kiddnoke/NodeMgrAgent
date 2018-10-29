@@ -1,0 +1,26 @@
+{
+  "name": "NodeMgrAgent",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "commander": "^2.19.0",
+    "log4js": "^3.0.6",
+    "socket.io-client": "^2.1.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "zhangsen",
+  "license": "MIT"
+}
