@@ -1,0 +1,17 @@
+module.exports = {
+  NodeLoginFailed: [ 1, 'NodeLoginFailed' ],
+  MayBeNodeExisted: [ 2, 'MayBeNodeExisted' ],
+  NodeHasExisted: [ 3, 'NodeHasExisted' ],
+  EventIdHasProcessed: [ 7, 'EventIdHasProcessed' ],
+  NodeIsUnPublish: [ 8, 'NodeIsUnPublish' ],
+  EndPointNotExist: [ 9, 'EndPointNotExist' ],
+  EventIdNotExist: [ 10, 'EventIdNotExist' ],
+  EventIdHasExisted: [ 11, 'EventIdHasExisted' ],
+  NodeNotExisted: [ 12, 'NodeNotExisted' ],
+  NodeUpdateFailed: [ 13, 'NodeUpdateFailed' ],
+  CannotFindSockId: [ 14, 'CannotFindSocketId' ],
+  OpenPortFailedByAckTimeout: [ 15, 'OpenPortFailedByAckTimeout' ],
+  ClosePortFailedByAckTimeout: [ 16, 'ClosePortFailedByAckTimeout' ],
+  EndPointHasDepleted: [ 17, 'EndPointHasDepleted' ],
+  ParamsIsVail : [99,'ParamsIsVail'],
+};

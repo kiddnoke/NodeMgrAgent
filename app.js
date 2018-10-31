@@ -1,4 +1,5 @@
 'use strict';
+const logger = require('./lib/logger');
 const options = require('./lib/options');
 const centerhost = options.center_host;
 const centerport = options.center_port;
@@ -76,16 +77,15 @@ comm.OnOpen(async (config, ack) => {
  * 收到服务中心 close端口的通知
  * TODO 超时或者成功失败的时候都推送结果出去
  */
-comm.OnClose((config, ack) => {
-  console.error(config);
-  controller.ClosePort(config.server_port)
-    .then((ret) => {
-      console.error(`OnClose ack center server`, ret);
-      ack(ret);
-    })
-    .catch((err) => {
-      console.error(err);// TODO 用邮件把错误发出去
-    });
+comm.OnClose(async (config, ack) => {
+  console.error( config );
+  try{
+    const ret = await controller.ClosePort(config.server_port);
+    console.error(`OnClose ack center server`, ret);
+    ack(ret);
+  }catch (e) {
+    console.error(err);// TODO 用邮件把错误发出去
+  }
 });
 /**
  * 被动Remove事件也需要推送
@@ -112,5 +112,6 @@ comm.OnConnect(() => {
 comm.OnDisconnect(() => {
   clearInterval(NotifyHandlerTimer);
 });
-// ['-H 10.0.2.70', '-P 7001', '-h 10.0.2.69' ,'-R 10000:20000' ,'-M 8001' ,'-C 8002' ,'-S CN' ,'-A 1' ]
-//   ['-H 10.0.2.70', '-P 7001', '-h 10.0.2.72' ,'-R 10000:20000' ,'-M 8001' ,'-C 8002' ,'-S CN' ,'-A 1' ]
+/**
+ * 超时回收端口
+ */
