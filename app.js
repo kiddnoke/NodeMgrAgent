@@ -3,7 +3,6 @@ const logger = require('./lib/logger');
 const options = require('./lib/options');
 const centerhost = options.center_host;
 const centerport = options.center_port;
-const myhostname = options.myhostname;
 const beginport = options.range[0];
 const endport = options.range[1];
 const manager_port = options.manager_port;
@@ -11,7 +10,6 @@ const controller_port = options.controller_port;
 const State = options.state;
 const Area = options.area;
 const config = {
-  ip: myhostname,
   beginport: beginport,
   endport: endport,
   manager_port: manager_port,
@@ -105,7 +103,7 @@ comm.OnConnect(() => {
   NotifyHandlerTimer = setInterval(NotifyHandler, 30 * 1000);
   controller.EnableTimeOutClear(true, 20);
 });
-comm.OnDisconnect(() => {
+comm.OnDisconnect(async () => {
   clearInterval(NotifyHandlerTimer);
   controller.EnableTimeOutClear(false);
 });
