@@ -111,7 +111,7 @@ let NotifyHandlerTimer;
  * 超时回收端口
  */
 const clearSessionTimeout = async () => {
-  const now = Date.now();
+  const now = Math.round(Date.now()/1000);
   const timeouts = controller.sessionCache.alltimeout;
   for (const item of timeouts) {
     const port  = item.port ;
