@@ -97,33 +97,19 @@ const NotifyHandler = async () => {
   comm.Notify('transfer', traffic_msg);
   controller.sessionCache.cleartraffic();
 };
-let NotifyHandlerTimer;
-
-/**
- * 超时回收端口
- */
-const clearSessionTimeout = async () => {
-  const now = Math.round(Date.now()/1000);
-  const timeouts = controller.sessionCache.alltimeout;
-  for (const item of timeouts) {
-    const port = item.port;
-    const timetout = item.timeout;
-    const timestamp = item.timestamp;
-    if (now - timestamp > timetout) {
-      const traffic_msg = await controller.RemovePort(port);
-      await comm.Notify('remove', traffic_msg);
-    }
-  }
-};
-let clearSessionTimer;
 /**
  *
  */
+let NotifyHandlerTimer;
 comm.OnConnect(() => {
   NotifyHandlerTimer = setInterval(NotifyHandler, 30 * 1000);
-  clearSessionTimer = setInterval(clearSessionTimeout, 60 * 1000);
+  controller.EnableTimeOutClear(true, 20);
 });
 comm.OnDisconnect(() => {
   clearInterval(NotifyHandlerTimer);
-  clearImmediate(clearSessionTimer);
+  controller.EnableTimeOutClear(false);
+});
+controller.OnTimeOut(async (port) => {
+  const traffic_msg = await controller.RemovePort(port);
+  await comm.Notify('remove', traffic_msg);
 });
