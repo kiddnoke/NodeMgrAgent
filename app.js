@@ -78,22 +78,14 @@ comm.OnOpen(async (config, ack) => {
  * TODO 超时或者成功失败的时候都推送结果出去
  */
 comm.OnClose(async (config, ack) => {
-  console.error( config );
-  try{
+  console.error(config);
+  try {
     const ret = await controller.ClosePort(config.server_port);
     console.error(`OnClose ack center server`, ret);
     ack(ret);
-  }catch (e) {
-    console.error(err);// TODO 用邮件把错误发出去
+  } catch (e) {
+    console.error(e);// TODO 用邮件把错误发出去
   }
-});
-/**
- * 被动Remove事件也需要推送
- * TODO 超时或者成功失败的时候都推送结果出去
- */
-controller.OnRemove(port => {
-  console.error(`OnRemove ${port}`);
-  comm.Notify('remove', port);
 });
 
 /**
@@ -114,11 +106,12 @@ const clearSessionTimeout = async () => {
   const now = Math.round(Date.now()/1000);
   const timeouts = controller.sessionCache.alltimeout;
   for (const item of timeouts) {
-    const port  = item.port ;
-    const timetout = item.timeout ;
-    const timestamp = item.timestamp ;
-    if( now - timestamp > timetout ) {
-      await controller.RemovePort(port);
+    const port = item.port;
+    const timetout = item.timeout;
+    const timestamp = item.timestamp;
+    if (now - timestamp > timetout) {
+      const traffic_msg = await controller.RemovePort(port);
+      await comm.Notify('remove', traffic_msg);
     }
   }
 };
