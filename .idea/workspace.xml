@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c0afeb1-92e2-404d-9ed5-cb1446ba3597" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/const/errorcode.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/commandconfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webclientconfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SSManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SSManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pm2.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/pm2.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Cache.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,16 +43,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="7" />
-          <entry key="js" value="1427" />
+          <entry key="js" value="1939" />
           <entry key="json" value="91" />
-          <entry key="txt" value="82" />
+          <entry key="txt" value="138" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="91" />
-          <entry key="JavaScript" value="1427" />
-          <entry key="PLAIN_TEXT" value="89" />
+          <entry key="JavaScript" value="1939" />
+          <entry key="PLAIN_TEXT" value="145" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -73,15 +68,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+            <state relative-caret-position="101">
+              <caret line="114" column="47" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/Cache.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -119,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/SSManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="222" column="10" selection-start-line="222" selection-start-column="10" selection-end-line="222" selection-end-column="10" />
+            <state relative-caret-position="196">
+              <caret line="251" column="18" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="18" />
               <folding>
                 <element signature="n#!!block;n#On#0;n#Command#0" />
                 <element signature="n#!!block;n#OnRemove#0;n#Command#0" />
@@ -131,7 +130,10 @@
                 <element signature="n#!!block;n#OnTimeOut#0;n#Command#0" />
                 <element signature="n#!!block;n#Fire#0;n#Command#0" />
                 <element signature="n#!!block;n#WaitOpenedEvent#0;n#Command#0" />
+                <element signature="n#!!block;n#WaitClosedEvent#0;n#Command#0" />
                 <element signature="n#!!block;n#WaitRemovedEvent#0;n#Command#0" />
+                <element signature="n#!!block;n#OpenPort#0;n#Command#0" />
+                <element signature="n#!!block;n#ClosePort#0;n#Command#0" />
               </folding>
             </state>
           </provider>
@@ -160,6 +162,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>close_</find>
+      <find>OnClose ack center server</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,8 +182,9 @@
         <option value="$PROJECT_DIR$/lib/util.js" />
         <option value="$PROJECT_DIR$/pm2.config.js" />
         <option value="$PROJECT_DIR$/const/errorcode.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/lib/SSManager.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/lib/Cache.js" />
       </list>
     </option>
   </component>
@@ -285,7 +289,7 @@
       <option name="presentableId" value="Default" />
       <updated>1540809326609</updated>
       <workItem from="1540809328424" duration="1815000" />
-      <workItem from="1540812548035" duration="19766000" />
+      <workItem from="1540812548035" duration="28030000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1540810499159</created>
@@ -308,11 +312,25 @@
       <option name="project" value="LOCAL" />
       <updated>1540828684840</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="还是需要关心关闭的超时问题， 因为关闭超时，会阻塞后面的操作">
+      <created>1540989434755</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1540989434756</updated>
+    </task>
+    <task id="LOCAL-00005" summary="controller 自己回收超时的资源">
+      <created>1541077747538</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1541077747538</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21581000" />
+    <option name="totallyTimeSpent" value="29845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -357,7 +375,9 @@
     <MESSAGE value="1" />
     <MESSAGE value="延长回收时间， 确保分配器回收正确。" />
     <MESSAGE value="close不关快慢，都能成功，所以不用关心超时时间。" />
-    <option name="LAST_COMMIT_MESSAGE" value="close不关快慢，都能成功，所以不用关心超时时间。" />
+    <MESSAGE value="还是需要关心关闭的超时问题， 因为关闭超时，会阻塞后面的操作" />
+    <MESSAGE value="controller 自己回收超时的资源" />
+    <option name="LAST_COMMIT_MESSAGE" value="controller 自己回收超时的资源" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -394,15 +414,21 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
-          <line>240</line>
+          <line>239</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
-          <line>236</line>
+          <line>235</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app.js</url>
+          <line>120</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -476,9 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Cache.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Comm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-99" />
@@ -504,17 +527,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/SSManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="222" column="10" selection-start-line="222" selection-start-column="10" selection-end-line="222" selection-end-column="10" />
+        <state relative-caret-position="196">
+          <caret line="251" column="18" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="18" />
           <folding>
             <element signature="n#!!block;n#On#0;n#Command#0" />
             <element signature="n#!!block;n#OnRemove#0;n#Command#0" />
@@ -522,8 +538,25 @@
             <element signature="n#!!block;n#OnTimeOut#0;n#Command#0" />
             <element signature="n#!!block;n#Fire#0;n#Command#0" />
             <element signature="n#!!block;n#WaitOpenedEvent#0;n#Command#0" />
+            <element signature="n#!!block;n#WaitClosedEvent#0;n#Command#0" />
             <element signature="n#!!block;n#WaitRemovedEvent#0;n#Command#0" />
+            <element signature="n#!!block;n#OpenPort#0;n#Command#0" />
+            <element signature="n#!!block;n#ClosePort#0;n#Command#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="114" column="47" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Cache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
         </state>
       </provider>
     </entry>
