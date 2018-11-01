@@ -99,19 +99,38 @@ controller.OnRemove(port => {
 /**
  * 定时向服务中心发送端口消耗状况
  */
-const NotifyHandler = () => {
+const NotifyHandler = async () => {
   const traffic_msg = controller.sessionCache.alltraffic;
   if (!!!traffic_msg) return;
   comm.Notify('transfer', traffic_msg);
   controller.sessionCache.cleartraffic();
 };
 let NotifyHandlerTimer;
-comm.OnConnect(() => {
-  NotifyHandlerTimer = setInterval(NotifyHandler, 60 * 1000);
-});
-comm.OnDisconnect(() => {
-  clearInterval(NotifyHandlerTimer);
-});
+
 /**
  * 超时回收端口
  */
+const clearSessionTimeout = async () => {
+  const now = Date.now();
+  const timeouts = controller.sessionCache.alltimeout;
+  for (const item of timeouts) {
+    const port  = item.port ;
+    const timetout = item.timeout ;
+    const timestamp = item.timestamp ;
+    if( now - timestamp > timetout ) {
+      await controller.RemovePort(port);
+    }
+  }
+};
+let clearSessionTimer;
+/**
+ *
+ */
+comm.OnConnect(() => {
+  NotifyHandlerTimer = setInterval(NotifyHandler, 30 * 1000);
+  clearSessionTimer = setInterval(clearSessionTimeout, 60 * 1000);
+});
+comm.OnDisconnect(() => {
+  clearInterval(NotifyHandlerTimer);
+  clearImmediate(clearSessionTimer);
+});
