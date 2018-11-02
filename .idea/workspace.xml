@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0afeb1-92e2-404d-9ed5-cb1446ba3597" name="Default Changelist" comment="">
+    <list default="true" id="0c0afeb1-92e2-404d-9ed5-cb1446ba3597" name="Default Changelist" comment="commander有bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SSManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SSManager.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,16 +43,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="7" />
-          <entry key="js" value="2771" />
+          <entry key="js" value="2778" />
           <entry key="json" value="91" />
-          <entry key="txt" value="199" />
+          <entry key="txt" value="229" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="91" />
-          <entry key="JavaScript" value="2771" />
-          <entry key="PLAIN_TEXT" value="206" />
+          <entry key="JavaScript" value="2778" />
+          <entry key="PLAIN_TEXT" value="236" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -72,17 +72,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            <state relative-caret-position="389">
+              <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/options.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+            <state relative-caret-position="360">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -135,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/SSManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+            <state relative-caret-position="497">
+              <caret line="122" column="41" lean-forward="true" selection-start-line="122" selection-start-column="41" selection-end-line="122" selection-end-column="41" />
               <folding>
                 <element signature="n#!!block;n#Fire#0;n#Command#0" />
                 <element signature="n#!!block;n#WaitClosedEvent#0;n#Command#0" />
@@ -176,10 +176,10 @@
         <option value="$PROJECT_DIR$/pm2.config.js" />
         <option value="$PROJECT_DIR$/const/errorcode.js" />
         <option value="$PROJECT_DIR$/lib/Cache.js" />
-        <option value="$PROJECT_DIR$/lib/SSManager.js" />
         <option value="$PROJECT_DIR$/lib/Comm.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/lib/options.js" />
+        <option value="$PROJECT_DIR$/lib/SSManager.js" />
       </list>
     </option>
   </component>
@@ -258,7 +258,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.app">
-    <configuration name="app" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-H 10.15.121.114   -R 10001:20000 -M 8001 -C 8002 -S GE -A 1 " path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
+    <configuration name="app" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-H 10.15.121.114 -S GE -A 2" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="isPortUsed.test.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="isPortUsed.test.js" working-dir="$PROJECT_DIR$/test">
@@ -285,7 +285,7 @@
       <option name="presentableId" value="Default" />
       <updated>1540809326609</updated>
       <workItem from="1540809328424" duration="1815000" />
-      <workItem from="1540812548035" duration="42246000" />
+      <workItem from="1540812548035" duration="48685000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1540810499159</created>
@@ -364,11 +364,25 @@
       <option name="project" value="LOCAL" />
       <updated>1541094717343</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="几个默认值">
+      <created>1541094840601</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1541094840601</updated>
+    </task>
+    <task id="LOCAL-00013" summary="commander有bug">
+      <created>1541097111872</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1541097111872</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44061000" />
+    <option name="totallyTimeSpent" value="50500000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -386,11 +400,11 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10748156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" order="0" />
+      <window_info anchor="bottom" id="TypeScript" order="0" weight="0.32899022" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32879046" />
-      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.2888165" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32790446" />
+      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.2888165" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32899022" />
@@ -421,7 +435,9 @@
     <MESSAGE value="超时remove回收" />
     <MESSAGE value="边缘不用报ip了。" />
     <MESSAGE value="默认端口7001" />
-    <option name="LAST_COMMIT_MESSAGE" value="默认端口7001" />
+    <MESSAGE value="几个默认值" />
+    <MESSAGE value="commander有bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="commander有bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -469,16 +485,28 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
-          <line>111</line>
+          <url>file://$PROJECT_DIR$/app.js</url>
+          <line>60</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app.js</url>
-          <line>5</line>
+          <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
+          <line>119</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="29" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
+          <line>122</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/SSManager.js</url>
+          <line>121</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -572,30 +600,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/SSManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!block;n#Fire#0;n#Command#0" />
-            <element signature="n#!!block;n#WaitClosedEvent#0;n#Command#0" />
-            <element signature="n#!!block;n#WaitRemovedEvent#0;n#Command#0" />
-            <element signature="n#!!block;n#ClosePort#0;n#Command#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Comm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -613,8 +621,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/options.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        <state relative-caret-position="360">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/SSManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="122" column="41" lean-forward="true" selection-start-line="122" selection-start-column="41" selection-end-line="122" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!block;n#Fire#0;n#Command#0" />
+            <element signature="n#!!block;n#WaitClosedEvent#0;n#Command#0" />
+            <element signature="n#!!block;n#WaitRemovedEvent#0;n#Command#0" />
+            <element signature="n#!!block;n#ClosePort#0;n#Command#0" />
+          </folding>
         </state>
       </provider>
     </entry>
