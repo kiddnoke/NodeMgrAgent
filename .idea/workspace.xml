@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0afeb1-92e2-404d-9ed5-cb1446ba3597" name="Default Changelist" comment="">
+    <list default="true" id="0c0afeb1-92e2-404d-9ed5-cb1446ba3597" name="Default Changelist" comment="线上环境用PM2 做 守护进程">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pm2.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/pm2.config.js" afterDir="false" />
@@ -45,15 +45,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="7" />
-          <entry key="js" value="2802" />
-          <entry key="json" value="217" />
+          <entry key="js" value="2803" />
+          <entry key="json" value="224" />
           <entry key="txt" value="265" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSON" value="217" />
-          <entry key="JavaScript" value="2802" />
+          <entry key="JSON" value="224" />
+          <entry key="JavaScript" value="2803" />
           <entry key="PLAIN_TEXT" value="272" />
         </counts>
       </usages-collector>
@@ -113,8 +113,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="480">
+              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -161,7 +161,7 @@
         <entry file="file://$PROJECT_DIR$/pm2.config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -298,7 +298,7 @@
       <workItem from="1540812548035" duration="48685000" />
       <workItem from="1541271580669" duration="658000" />
       <workItem from="1541284819061" duration="67000" />
-      <workItem from="1541285202495" duration="1612000" />
+      <workItem from="1541285202495" duration="1704000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1540810499159</created>
@@ -405,11 +405,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541286564142</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="线上环境用PM2 做 守护进程">
+      <created>1541286823424</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1541286823424</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57494000" />
+    <option name="totallyTimeSpent" value="57586000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -424,7 +431,7 @@
     <frame x="-7" y="0" width="1079" height="1366" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2612872" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2612872" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="0" weight="0.32899022" />
@@ -437,7 +444,7 @@
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32899022" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24532901" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24532901" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -622,14 +629,14 @@
     <entry file="file://$PROJECT_DIR$/pm2.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        <state relative-caret-position="480">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
         </state>
       </provider>
     </entry>
