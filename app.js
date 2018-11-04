@@ -56,14 +56,13 @@ comm.OnConnect(async () => {
  *   server_port
  * }
  */
-comm.OnOpen(async (config, ack) => {
+comm.OnOpen(async (config) => {
   try {
     const ret = await controller.OpenPort(config);
     if (ret) {
-      const port = config.server_port;
-      return await ack(port);
+      return await comm.Notify('open',config);
     } else {
-      return await ack(false);
+      return await comm.Notify('open',false);
     }
 
   } catch (e) {
@@ -75,12 +74,12 @@ comm.OnOpen(async (config, ack) => {
  * 收到服务中心 close端口的通知
  * TODO 超时或者成功失败的时候都推送结果出去
  */
-comm.OnClose(async (config, ack) => {
+comm.OnClose(async (config) => {
   console.error(config);
   try {
     const ret = await controller.ClosePort(config.server_port);
     console.error(`OnClose ack center server`, ret);
-    ack(ret);
+    return await comm.Notify('close',config);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
   }
