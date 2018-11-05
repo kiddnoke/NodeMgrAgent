@@ -92,7 +92,6 @@ const NotifyHandler = async () => {
   const traffic_msg = controller.sessionCache.alltraffic;
   if (!!!traffic_msg) return;
   comm.Notify('transfer', traffic_msg);
-  controller.sessionCache.cleartraffic();
 };
 /**
  *
