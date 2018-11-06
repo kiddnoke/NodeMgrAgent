@@ -60,11 +60,12 @@ comm.OnOpen(async (config) => {
   try {
     const ret = await controller.OpenPort(config);
     if (ret) {
+      console.log(`OnOpen ${JSON.stringify(config)}`);
       return await comm.Notify('open',config);
     } else {
+      console.log(`OnOpen ${config.sid} failed`);
       return await comm.Notify('open',false);
     }
-
   } catch (e) {
     console.error(e);
     return Promise.reject(e);
@@ -79,7 +80,7 @@ comm.OnClose(async (config) => {
   try {
     const ret = await controller.ClosePort(config.server_port);
     console.error(`OnClose ack center server`, ret);
-    return await comm.Notify('close',config);
+    return await comm.Notify('close',ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
   }
@@ -98,8 +99,8 @@ const NotifyHandler = async () => {
  */
 let NotifyHandlerTimer;
 comm.OnConnect(() => {
-  NotifyHandlerTimer = setInterval(NotifyHandler, 30 * 1000);
-  controller.EnableTimeOutClear(true, 20);
+  NotifyHandlerTimer = setInterval(NotifyHandler, 120 * 1000);
+  controller.EnableTimeOutClear(true);
 });
 comm.OnDisconnect(async () => {
   clearInterval(NotifyHandlerTimer);
