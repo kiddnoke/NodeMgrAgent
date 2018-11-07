@@ -107,6 +107,7 @@ comm.OnDisconnect(async () => {
   controller.EnableTimeOutClear(false);
 });
 controller.OnTimeOut(async (port) => {
+  console.error(`remove ${port}`);
   const traffic_msg = await controller.RemovePort(port);
   await comm.Notify('remove', traffic_msg);
 });
