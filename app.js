@@ -61,10 +61,10 @@ comm.OnOpen(async (config) => {
     const ret = await controller.OpenPort(config);
     if (ret) {
       console.log(`OnOpen ${JSON.stringify(config)}`);
-      return await comm.Notify('open',config);
+      return await comm.Notify('open', config);
     } else {
       console.log(`OnOpen ${config.sid} failed`);
-      return await comm.Notify('open',false);
+      return await comm.Notify('open', false);
     }
   } catch (e) {
     console.error(e);
@@ -80,26 +80,37 @@ comm.OnClose(async (config) => {
   try {
     const ret = await controller.ClosePort(config.server_port);
     console.error(`OnClose ack center server`, ret);
-    return await comm.Notify('close',ret);
+    return await comm.Notify('close', ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
   }
 });
-
-/**
- * 定时向服务中心发送端口消耗状况
- */
-const NotifyHandler = async () => {
-  const traffic_msg = controller.sessionCache.alltraffic;
-  if (!!!traffic_msg) return;
-  comm.Notify('transfer', traffic_msg);
-};
 /**
  *
  */
 let NotifyHandlerTimer;
 comm.OnConnect(() => {
-  NotifyHandlerTimer = setInterval(NotifyHandler, 120 * 1000);
+  const Interval = 120;
+  /**
+   * 定时向服务中心发送端口消耗状况
+   */
+  const NotifyHandler = async () => {
+    let traffic_msg = [];
+    const Now = Math.round(Date.now() / 1000);
+    for (const [port, item] of controller.sessionCache.entries()) {
+      const timestamp = item[2];
+      if (Now - timestamp < Interval)
+        traffic_msg.push({
+          port: port,
+          sid: item[0].sid,
+          uid: item[0].uid,
+          transfer: item[1],
+        });
+    }
+    if (!!!traffic_msg) return;
+    comm.Notify('transfer', traffic_msg);
+  };
+  NotifyHandlerTimer = setInterval(NotifyHandler, Interval * 1000);
   controller.EnableTimeOutClear(true);
 });
 comm.OnDisconnect(async () => {
