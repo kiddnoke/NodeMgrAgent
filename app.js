@@ -90,7 +90,7 @@ comm.OnClose(async (config) => {
  */
 let NotifyHandlerTimer;
 comm.OnConnect(() => {
-  const Interval = 120;
+  const Interval = 60;
   /**
    * 定时向服务中心发送端口消耗状况
    */
@@ -111,7 +111,7 @@ comm.OnConnect(() => {
     comm.Notify('transfer', traffic_msg);
   };
   NotifyHandlerTimer = setInterval(NotifyHandler, Interval * 1000);
-  controller.EnableTimeOutClear(true);
+  controller.EnableTimeOutClear(true,Interval);
 });
 comm.OnDisconnect(async () => {
   clearInterval(NotifyHandlerTimer);
