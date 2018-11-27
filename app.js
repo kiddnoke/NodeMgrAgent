@@ -34,6 +34,7 @@ comm.OnConnect(async () => {
     let body = JSON.stringify(msgbody);
     console.log(`login done : ${body}`);
   });
+  comm.Notify('health', controller.sessionCache.size);
 });
 /**
  * 收到服务中心 Open端口的通知
@@ -59,6 +60,7 @@ comm.OnConnect(async () => {
 comm.OnOpen(async (config) => {
   try {
     const ret = await controller.OpenPort(config);
+    await comm.Notify('health', controller.sessionCache.size);
     if (ret) {
       console.log(`OnOpen ${JSON.stringify(config)}`);
       return await comm.Notify('open', config);
@@ -80,6 +82,7 @@ comm.OnClose(async (config) => {
   try {
     const ret = await controller.ClosePort(config.server_port);
     console.error(`OnClose ack center server`, ret);
+    await comm.Notify('health', controller.sessionCache.size);
     return await comm.Notify('close', ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
@@ -120,5 +123,6 @@ comm.OnDisconnect(async () => {
 controller.OnTimeOut(async (port) => {
   console.error(`remove ${port}`);
   const traffic_msg = await controller.RemovePort(port);
+  await comm.Notify('health',controller.sessionCache.size);
   await comm.Notify('remove', traffic_msg);
 });
