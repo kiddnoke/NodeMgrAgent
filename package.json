@@ -7,7 +7,8 @@
     "commander": "^2.19.0",
     "log4js": "^3.0.6",
     "pm2": "^3.2.2",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "watchdog": "^0.8.17"
   },
   "devDependencies": {},
   "engines": {

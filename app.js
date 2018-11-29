@@ -29,12 +29,17 @@ comm.OnConnect(async () => {
   /**
    * 注册
    */
-  await controller.ping();
-  comm.Request('login', config, (msgbody) => {
-    let body = JSON.stringify(msgbody);
-    console.log(`login done : ${body}`);
-  });
-  comm.Notify('health', controller.sessionCache.size);
+  try {
+    await controller.ping();
+    comm.Request('login', config, (msgbody) => {
+      let body = JSON.stringify(msgbody);
+      console.log(`login done : ${body}`);
+    });
+    comm.Notify('health', controller.sessionCache.size);
+  }
+  catch (e) {
+    comm.Notify('agentError', e.message);
+  }
 });
 /**
  * 收到服务中心 Open端口的通知
@@ -70,6 +75,7 @@ comm.OnOpen(async (config) => {
     }
   } catch (e) {
     console.error(e);
+    comm.Notify('agentError', e.message);
     return Promise.reject(e);
   }
 });
@@ -86,6 +92,7 @@ comm.OnClose(async (config) => {
     return await comm.Notify('close', ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
+    comm.Notify('agentError', e.message);
   }
 });
 /**
@@ -114,7 +121,7 @@ comm.OnConnect(() => {
     comm.Notify('transfer', traffic_msg);
   };
   NotifyHandlerTimer = setInterval(NotifyHandler, Interval * 1000);
-  controller.EnableTimeOutClear(true,Interval);
+  controller.EnableTimeOutClear(true, Interval);
 });
 comm.OnDisconnect(async () => {
   clearInterval(NotifyHandlerTimer);
@@ -123,6 +130,30 @@ comm.OnDisconnect(async () => {
 controller.OnTimeOut(async (port) => {
   console.error(`remove ${port}`);
   const traffic_msg = await controller.RemovePort(port);
-  await comm.Notify('health',controller.sessionCache.size);
+  await comm.Notify('health', controller.sessionCache.size);
   await comm.Notify('remove', traffic_msg);
 });
+
+const {Watchdog} = require('watchdog');
+const dog = new Watchdog();
+dog.sleep();
+const feed = async () => {
+  try {
+    await controller.ping();
+    dog.feed({});
+  } catch (e) {
+    dog.sleep();
+    comm.Notify('agentError', e.message);
+  }
+};
+let feedTimer;
+comm.OnConnect(async () => {
+  feedTimer = setInterval(feed, 30 * 1000);
+});
+comm.OnDisconnect(async () => {
+  clearInterval(feedTimer);
+});
+dog.on('reset', async () => {
+  comm.Notify('agentError', 'dog is reset');
+});
+
