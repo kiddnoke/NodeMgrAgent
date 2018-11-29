@@ -18,7 +18,8 @@
     "pm2start": "pm2 start pm2.config.js ",
     "pm2kill": "pm2 kill ",
     "pm2stop": "pm2 stop all",
-    "ls":"pm2 ls"
+    "ls":"pm2 ls",
+    "pm2web":"pm2 web"
   },
   "ci": {
     "version": "8"
