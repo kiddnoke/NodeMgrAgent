@@ -135,7 +135,7 @@ const dog = new Watchdog();
 dog.sleep();
 const feed = async () => {
   try {
-    const duran = await controller.ping();
+    const duran = await controller.ping(5);
     if (500 < duran && duran < 1000) {
       comm.Notify('agentWarn', `ping duran = ${duran}`);
     } else if (1000 < duran && duran < 2000) {
