@@ -37,7 +37,7 @@ comm.OnConnect(async () => {
     comm.Notify('health', controller.sessionCache.size);
   }
   catch (e) {
-    comm.Notify('agentError', e.message);
+    console.error(e)
   }
 });
 /**
@@ -74,8 +74,6 @@ comm.OnOpen(async (config) => {
     }
   } catch (e) {
     console.error(e);
-    comm.Notify('agentError', e.message);
-    return Promise.reject(e);
   }
 });
 /**
@@ -91,7 +89,6 @@ comm.OnClose(async (config) => {
     return await comm.Notify('close', ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
-    comm.Notify('agentError', e.message);
   }
 });
 /**
