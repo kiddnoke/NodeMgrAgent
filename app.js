@@ -25,20 +25,18 @@ const controller = new Command(config);
  * ss管理器初始化
  */
 controller.Init();
+controller.On('error', e => {
+  console.error(e)
+});
 comm.OnConnect(async () => {
   /**
    * 注册
    */
-  try {
-    comm.Request('login', config, (msgbody) => {
-      let body = JSON.stringify(msgbody);
-      console.log(`login done : ${body}`);
-    });
-    comm.Notify('health', controller.sessionCache.size);
-  }
-  catch (e) {
-    console.error(e)
-  }
+  comm.Request('login', config, (msgbody) => {
+    let body = JSON.stringify(msgbody);
+    console.log(`login done : ${body}`);
+  });
+  comm.Notify('health', controller.sessionCache.size);
 });
 /**
  * 收到服务中心 Open端口的通知
@@ -74,6 +72,7 @@ comm.OnOpen(async (config) => {
     }
   } catch (e) {
     console.error(e);
+    comm.Notify('agentWarn', e.message);
   }
 });
 /**
@@ -89,6 +88,7 @@ comm.OnClose(async (config) => {
     return await comm.Notify('close', ret);
   } catch (e) {
     console.error(e);// TODO 用邮件把错误发出去
+    comm.Notify('agentWarn', e.message);
   }
 });
 /**
@@ -135,7 +135,14 @@ const dog = new Watchdog();
 dog.sleep();
 const feed = async () => {
   try {
-    await controller.ping();
+    const duran = await controller.ping();
+    if (500 < duran && duran < 1000) {
+      comm.Notify('agentWarn', `ping duran = ${duran}`);
+    } else if (1000 < duran && duran < 2000) {
+      comm.Notify('agentWarn', `ping duran = ${duran}`);
+    } else if (2000 < duran && duran < 4000) {
+      comm.Notify('agentError', `ping duran = ${duran}`);
+    }
     dog.feed({});
   } catch (e) {
     dog.sleep();
