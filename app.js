@@ -30,7 +30,6 @@ comm.OnConnect(async () => {
    * 注册
    */
   try {
-    await controller.ping();
     comm.Request('login', config, (msgbody) => {
       let body = JSON.stringify(msgbody);
       console.log(`login done : ${body}`);
