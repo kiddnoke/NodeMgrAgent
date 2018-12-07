@@ -153,9 +153,7 @@ let feedTimer;
 comm.OnConnect(async () => {
   feedTimer = setInterval(feed, 30 * 1000);
 });
-comm.OnDisconnect(async () => {
-  clearInterval(feedTimer);
-});
+
 dog.on('reset', async () => {
   comm.Notify('agentError', 'dog is reset');
 });
