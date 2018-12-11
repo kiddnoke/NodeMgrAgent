@@ -45,13 +45,17 @@ comm.OnConnect(async () => {
 /**
  * config
  * {
- *   sid
  *   uid
- *   timeout
- *   limitup
- *   limitdown
+ *   sid
  *   method
  *   password
+ *   timeout
+ *   currlimitup
+ *   currlimitdown
+ *   remain
+ *   nextlimitup
+ *   nextlimitdown
+ *   expire
  * }
  * ack
  * {
@@ -117,17 +121,30 @@ comm.OnConnect(() => {
     comm.Notify('transfer', traffic_msg);
   };
   NotifyHandlerTimer = setInterval(NotifyHandler, Interval * 1000);
-  controller.EnableTimeOutClear(true, Interval);
+  controller.EnableClear(true, Interval);
 });
 comm.OnDisconnect(async () => {
   clearInterval(NotifyHandlerTimer);
-  controller.EnableTimeOutClear(false);
+  controller.EnableClear(false);
 });
-controller.OnTimeOut(async (port) => {
-  console.error(`remove ${port}`);
-  const traffic_msg = await controller.RemovePort(port);
+controller.OnTimeOut(async (params) => {
+  console.error(`remove ${params.port}`);
+  const traffic_msg = await controller.RemovePort(params.port);
   await comm.Notify('health', controller.sessionCache.size);
-  await comm.Notify('remove', traffic_msg);
+  await comm.Notify('timeout', traffic_msg);
+});
+controller.OnExpire(async (params) => {
+  console.error(`expire ${params.port}`);
+  const traffic_msg = await controller.RemovePort(params.port);
+  await comm.Notify('health', controller.sessionCache.size);
+  await comm.Notify('expire', traffic_msg);
+});
+controller.OnOverflow(async (params) => {
+  console.error(`overflow ${params.port}`);
+  await controller.UpdateLimit(params.port, params.limitup, params.limitdown);
+  let item = controller.sessionCache.get(params.port);
+  item[0].remain = 0 ;
+  await comm.Notify('overflow', params);
 });
 
 const {Watchdog} = require('watchdog');
@@ -157,4 +174,5 @@ comm.OnConnect(async () => {
 dog.on('reset', async () => {
   comm.Notify('agentError', 'dog is reset');
 });
+
 
