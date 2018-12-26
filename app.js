@@ -142,8 +142,8 @@ controller.OnExpire(async (params) => {
   await comm.Notify('expire', traffic_msg);
 });
 controller.OnBalance(async (params) => {
-  console.error(`balance ${params.port}`);
-  await comm.Notify('balance', {balanceid: params.balanceid, balancenotifytime: params.balancenotifytime});
+  console.error(`balance port[${params.port}] uid[${params.uid}] sid[${params.sid}]`);
+  await comm.Notify('balance', params);
 });
 controller.OnOverflow(async (params) => {
   console.error(`overflow ${params.port}`);
