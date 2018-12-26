@@ -56,6 +56,8 @@ comm.OnConnect(async () => {
  *   nextlimitup
  *   nextlimitdown
  *   expire
+ *   notifyid
+ *   notifytimestamp
  * }
  * ack
  * {
@@ -139,11 +141,15 @@ controller.OnExpire(async (params) => {
   await comm.Notify('health', controller.sessionCache.size);
   await comm.Notify('expire', traffic_msg);
 });
+controller.OnBalance(async (params) => {
+  console.error(`balance ${params.port}`);
+  await comm.Notify('balance', {balanceid: params.balanceid, balancenotifytime: params.balancenotifytime});
+});
 controller.OnOverflow(async (params) => {
   console.error(`overflow ${params.port}`);
   await controller.UpdateLimit(params.port, params.limitup, params.limitdown);
   let item = controller.sessionCache.get(params.port);
-  item[0].remain = 0 ;
+  item[0].remain = 0;
   await comm.Notify('overflow', params);
 });
 
